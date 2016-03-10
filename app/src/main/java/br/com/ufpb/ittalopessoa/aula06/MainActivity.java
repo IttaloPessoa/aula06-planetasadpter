@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         application = (Aula06Application) getApplicationContext();
 
         listView = (ListView) findViewById(R.id.listView);
-        listView.setAdapter(new PlanetaAdapter(this, application.getPlanetas()));
+        //listView.setAdapter(new PlanetaAdapter(this, application.getPlanetas()));
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

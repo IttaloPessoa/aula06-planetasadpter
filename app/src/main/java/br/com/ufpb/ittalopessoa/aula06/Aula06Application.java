@@ -4,6 +4,7 @@ import android.app.Application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Aula06Application extends Application {
 
@@ -29,5 +30,18 @@ public class Aula06Application extends Application {
 
     public List<Planeta> getPlanetas(){
         return planetas;
+    }
+
+    public void addPlaneta(){
+        Random random = new Random();
+        planetas.add(
+                planetas.get(
+                        planetas.size() > 1 ? random.nextInt(planetas.size() - 1) : 0
+                )
+        );
+    }
+
+    public void removerPlaneta(int idx){
+        planetas.remove(idx);
     }
 }

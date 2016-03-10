@@ -1,9 +1,6 @@
 package br.com.ufpb.ittalopessoa.aula06;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.media.Image;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +10,18 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Ittalo Pessoa on 03/03/2016.
- */
 public class PlanetaAdapter extends BaseAdapter {
 
     private Context context;
     private List<Planeta> planetas;
+    private boolean isGrid;
+    private Aula06Application application;
 
-    public PlanetaAdapter(Context context, List<Planeta> planetas) {
+    public PlanetaAdapter(Context context, boolean isGrid) {
         this.context = context;
-        this.planetas = planetas;
+        this.application = (Aula06Application) context.getApplicationContext();
+        this.planetas = application.getPlanetas();
+        this.isGrid = isGrid;
     }
 
     @Override
@@ -41,9 +39,22 @@ public class PlanetaAdapter extends BaseAdapter {
         return 0;
     }
 
+    public boolean isGrid() {
+        return isGrid;
+    }
+
+    public void setIsGrid(boolean isGrid) {
+        this.isGrid = isGrid;
+    }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = LayoutInflater.from(context).inflate(R.layout.layout_item_list, parent, false);
+        View view = null;
+        if(isGrid){
+            view = LayoutInflater.from(context).inflate(R.layout.layout_grid_item, parent, false);
+        }else{
+            view = LayoutInflater.from(context).inflate(R.layout.layout_item_list, parent, false);
+        }
 
         Planeta planeta = planetas.get(position);
 
